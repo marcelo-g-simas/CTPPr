@@ -1,0 +1,20 @@
+Package: CTPPr
+Title: Census Transportation Planning Products Program (CTPP) API
+Version: 1.0.0
+Authors@R: c(
+    person("Anthony", "Fucci", email = "AnthonyFucci@Westat.com", role = c("aut", "cre")),
+    person("Alex", "Cates", email = "AlexanderCates@westat.com",role = c("aut")),
+    person("Marcelo", "Simas", email = "MarceloSimas@westat.com",role = c("aut"))
+    )
+Description: Download Census Transportation Planning Products Program (CTPP) Tables for analysis in R
+Depends:
+    R (>= 3.2)
+Imports:
+    data.table,
+    httr,
+    XML,
+    DT
+License: GPL-3
+Encoding: UTF-8
+LazyData: true
+RoxygenNote: 6.1.1
