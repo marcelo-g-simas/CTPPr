@@ -17,7 +17,7 @@ ctpp_tables <- function(style="browser", select=NA) {
 		select <- c(style,select)
 		style <- "browser"
 	}
-	if(nchar(select)>1) {
+	if(length(select)>=1) {
 		table_list <- table_list[name %in% c(style, select), ]
 		if(nrow(table_list)==0) {
 			table_list <- CTPPr::tables
@@ -71,7 +71,7 @@ ctpp_tables <- function(style="browser", select=NA) {
 				//$('<h4>Click on an ID to copy the download_ctpp() request to your clipboard.</h4>').insertBefore('#DataTables_Table_0_wrapper');
 				$('#DataTables_Table_0 td:first-child').css('cursor','pointer');
 				$('#DataTables_Table_0 td:first-child').attr('title','Copy to clipboard');
-				$('td:first-child').hover( function(e){ $(this).css('font-weight', 'bold');},function(e){ $(this).css('font-weight', '');});
+				$('#DataTables_Table_0 td:first-child').hover( function(e){ $(this).css('font-weight', 'bold');},function(e){ $(this).css('font-weight', '');});
 				function addRowHandlers() {
 					var rows = document.getElementById('DataTables_Table_0').getElementsByTagName('tbody')[0].rows;
 					for (i = 0; i < rows.length; i++) {
