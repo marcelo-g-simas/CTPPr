@@ -33,6 +33,6 @@
 
 ### Now in RStudio, install CTPP
 ```r
-install.packages('remotes')
-remotes::install_github('Westat-Transportation/CTPP')
+install.packages('devtools')
+devtools::install_github('Westat-Transportation/CTPPr')
 ```

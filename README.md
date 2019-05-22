@@ -13,8 +13,8 @@ The download function works with two datasets, and our ability to fetch their ta
 Reference the [install readme](https://github.com/Westat-Transportation/CTPPr/tree/master/inst/install) for specific instructions. Most use [RStudio Desktop](https://www.rstudio.com/products/rstudio/download/) to develop analyses with R.
 
 ```R
-install.packages('requires')
-requires::install_github('Westat-Transportation/CTPPr')
+install.packages('devtools')
+devtools::install_github('Westat-Transportation/CTPPr')
 ```
 
 # Example 1
