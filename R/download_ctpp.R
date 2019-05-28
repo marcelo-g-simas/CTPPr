@@ -156,7 +156,7 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 		geography <- "03" # 03=County see note above
 		geography_attribute_value <- "State"
 	}
-	geography <- ifelse(geography %in% c("3","4","5","7","8","9"), paste0("0",geography), geography)
+	geography <- ifelse(geography %in% c("3","4","5","6","7","8","9"), paste0("0",geography), geography)
 	if(!geography %in% ctpp_geography_list$ID) {
 		if(grepl("->",geography)) {
 			geography <- gsub(" ","",geography)
@@ -192,14 +192,24 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 
 	# state ----
 	if(state!="") {
-		# allow state parameter to be name or alpha FIPS or numeric FIPS
-		if(!state %in% ctpp_state_list$FIPS) {
-			if(nchar(state)==2) {
-				state <- ctpp_state_list[toupper(ctpp_state_list$Abbreviation)==toupper(state), "FIPS"]
-			} else {
-				state <- ctpp_state_list[toupper(ctpp_state_list$Name)==toupper(state), "FIPS"]
-			}
+		state <- gsub(" ","",state)
+		# bulk selection allows selecting multiple states using comma separated numeric FIPS
+		if(grepl(",",state)) {
+			state <- strsplit(state,",")[[1]]
 		}
+		state <- sapply(state, FUN=function(x) {
+			# allow state parameter to be name, or alpha FIPS, or numeric FIPS
+			x <- ifelse(x %in% c("1","2","3","4","5","6","7","8","9"), paste0("0",x), x)
+			if(!x %in% ctpp_state_list$FIPS) {
+				if(nchar(x)==2) {
+					x <- ctpp_state_list[toupper(ctpp_state_list$Abbreviation)==toupper(x), "FIPS"]
+				} else {
+					x <- ctpp_state_list[toupper(ctpp_state_list$Name)==toupper(x), "FIPS"]
+				}
+			}
+			return(x)
+		})
+	state <- paste(state, collapse=",")
 	}
 
 	# URL prep ----
@@ -227,11 +237,11 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 	# (1b) Set parameters as the web app requires them for our request
 	if(report_type %in% c("1","2")) {
 		request_body1[names(request_body1)=="GeoType"] <- report_type_name
-		request_body1[names(request_body1)==paste0(report_type_name,"_UseBulkSelection")] <- ifelse(state=="" && geography %in% c("02","03"),"0","1")
+		request_body1[names(request_body1)==paste0(report_type_name,"_UseBulkSelection")] <- ifelse(state=="" && geography %in% c("03","23"),"0","1")
 		request_body1[names(request_body1)==paste0(report_type_name,"_BulkLevel")] <- paste0("C",geography)
 		request_body1[names(request_body1)==paste0(report_type_name,"_BulkStates")] <- state
 		request_body1[names(request_body1)==paste0(report_type_name,"_SelectedLabel")] <- output
-		request_body1[names(request_body1)==paste0(report_type_name,"_SetSelected")] <- ifelse(state=="" && geography %in% c("02","03"),"0","-1")
+		request_body1[names(request_body1)==paste0(report_type_name,"_SetSelected")] <- ifelse(state=="" && geography %in% c("03","23"),"0","-1")
 		request_body1[names(request_body1)=="ReportFolderId"] <- ""
 		request_body1[names(request_body1)=="ReportCubeId"] <- NULL
 		request_body1[names(request_body1)=="ReportId"] <- NULL
@@ -245,12 +255,12 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 			request_body1[names(request_body1)=="GeoType"] <- "RESIDENCE"
 			request_body1[names(request_body1)=="FlowLevel"] <- paste0("C",geography)
 			request_body1[["BulkLabelSet"]] <- output
-			request_body1[names(request_body1)=="RESIDENCE_UseBulkSelection"] <- ifelse(state=="" && geography_residence %in% c("02","03"),"0","1")
+			request_body1[names(request_body1)=="RESIDENCE_UseBulkSelection"] <- ifelse(state=="","0","1")
 			request_body1[names(request_body1)=="RESIDENCE_BulkLevel"] <- paste0("C",geography_residence)
 			request_body1[names(request_body1)=="RESIDENCE_BulkStates"] <- state
 			request_body1[names(request_body1)=="RESIDENCE_SelectedLabel"] <- output
 			request_body1[names(request_body1)=="RESIDENCE_SetSelected"] <- ifelse(state=="","0","-1")
-			request_body1[names(request_body1)=="WORKPLACE_UseBulkSelection"] <- ifelse(state=="" && geography_workplace=="42","0","1")
+			request_body1[names(request_body1)=="WORKPLACE_UseBulkSelection"] <- ifelse(state=="","0","1")
 			request_body1[names(request_body1)=="WORKPLACE_BulkLevel"] <- paste0("C",geography_workplace)
 			request_body1[names(request_body1)=="WORKPLACE_BulkStates"] <- state
 			request_body1[names(request_body1)=="WORKPLACE_SelectedLabel"] <- output

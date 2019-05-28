@@ -1,4 +1,4 @@
-# CTPP Install Instructions
+# CTPPr Install Instructions
 
 ### For each record, use the Latest Download link to browse for the most recent version, or use the Direct Download link for your operating system
 
@@ -31,7 +31,7 @@
         - Latest Download: https://www.rstudio.com/products/rstudio/download/#download
         - Direct Download: https://download1.rstudio.org/desktop/macos/RStudio-1.2.1335.dmg
 
-### Now in RStudio, install CTPP
+### Now in RStudio, install CTPPr
 ```r
 install.packages('devtools')
 devtools::install_github('Westat-Transportation/CTPPr')
