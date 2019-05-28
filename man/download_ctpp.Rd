@@ -4,8 +4,8 @@
 \alias{download_ctpp}
 \title{Download CTPP Data}
 \usage{
-download_ctpp(id, geography = "03", state = "", dataset = "",
-  output = "Name", debug_request = F)
+download_ctpp(id, geography = "State", state = "", dataset = "",
+  output = "Name")
 }
 \arguments{
 \item{id}{The identifier of the CTPP table you want to download (e.g. "A101100"). Type \link[CTPPr]{ctpp_tables}() for a list of tables and their ids.}

@@ -8,13 +8,13 @@ Authors@R: c(
     )
 Description: Download Census Transportation Planning Products Program (CTPP) Tables for analysis in R
 Depends:
-    R (>= 3.2),
-    surveyvisualize
+    R (>= 3.2)
 Imports:
     data.table,
     httr,
     XML,
-    DT
+    DT,
+    surveyvisualize
 Remotes: github::Westat-Transportation/surveyvisualize
 License: GPL-3
 Encoding: UTF-8

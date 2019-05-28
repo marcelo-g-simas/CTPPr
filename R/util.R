@@ -1,7 +1,6 @@
-#' @import surveyvisualize
 #==================================================================================================#
 #' @export
-get_post_body_list <- function(html) {
+get_post_body_list <- function(html, debug_request=F) {
 	# resolve issue with some encodings truncating the html values we read in
 	html <- gsub("&#28;","",html) # this special html code causes problems: FS file separator %1C
 	html <- gsub("&#29;","",html) # this special html code causes problems: GS group separator %1D
@@ -22,6 +21,11 @@ get_post_body_list <- function(html) {
 		),
 		hidden_inputs
 	)
+	if(debug_request) {
+		df <- stack(request_body)
+		df <- df[, c(2, 1)]
+		write.table(df, paste0("request_body(",proc.time()[3][1],").csv"), quote=FALSE, sep=":", row.names=F)
+	}
 	return(request_body)
 }
 
@@ -29,9 +33,10 @@ get_post_body_list <- function(html) {
 #' @export
 get_post_response <- function(url, host_url, referer_url, request_body, debug_request=F) {
 
-	response <- httr::POST(
+	response <- httr::RETRY(times = 4, pause_cap = 16, quiet = TRUE,
+		verb = "POST",
 		url = url,
-		httr::add_headers(
+		config = httr::add_headers(
 			`Referer` = referer_url,
 			`Upgrade-Insecure-Requests` = "1",
 			`Content-Type` = "application/x-www-form-urlencoded",
@@ -46,12 +51,30 @@ get_post_response <- function(url, host_url, referer_url, request_body, debug_re
 
 	if(response$status_code != 200) {
 		stop(
-			"\nSomething wrong with web request (HTTP error request code = ", response$status_code, ").",
+			"\nWeb service may be down (HTTP error request code = ", response$status_code, ").",
 			"\nURL attempted: ", url,
-			"\nMake sure report table exists. View available tables by calling: ctpp_tables()"
+			"\nYou may try again in a few seconds if you know the requested report table exists. View available tables with ctpp_tables()"
 		)
 	}
 
 	return(response)
+
+}
+
+#==================================================================================================#
+.onAttach <- function(libname, pkgname) {
+
+	# put surveyvisualize functions in namespace on load while avoiding showing a mess of messages (from surveyvisualize's dependency on ggplot2)
+	# this also let's us avoid using Depends: in DESCRIPTION file while still downloading and installing it when this package is installed with devtools::install_*
+	invisible(suppressWarnings(suppressPackageStartupMessages((library(surveyvisualize, quietly=T)))))
+
+  if(interactive()) {
+  	packageStartupMessage('___________________________________________________________')
+    packageStartupMessage("CTPPr ", paste0(packageVersion("CTPPr")))
+    packageStartupMessage("Developed by Westat: https://www.westat.com")
+    packageStartupMessage('===========================================================')
+    packageStartupMessage("GitHub page: https://github.com/Westat-Transportation/CTPPr")
+    packageStartupMessage("CTPP Program page: https://ctpp.transportation.org/\n")
+  }
 
 }

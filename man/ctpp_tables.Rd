@@ -8,9 +8,11 @@ ctpp_tables(style = "browser", select = NA)
 }
 \arguments{
 \item{style}{"raw" or "r" to return a r data.table object or "browser" (default) to return a javascript datatable}
+
+\item{select}{character vector of table id's. This will return only the tables specified, which may be useful for presentations or when you would like to hide records by default.}
 }
 \description{
-This function returns a list of CTPP table identifiers and descriptions
+This function returns a list of CTPP table identifiers and descriptions. You can click on the ID in the default version to copy an example download_ctpp() request to your clipboard.
 }
 \examples{
 ctpp_tables()

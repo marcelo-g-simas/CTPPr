@@ -29,11 +29,11 @@ A110101 <- download_ctpp(A110101)
 ```R
 # A102106 -	MEANS OF TRANSPORTATION (18) (WORKERS 16 YEARS AND OVER)
 A102106 <- download_ctpp(
-	id = "A102106",
-	dataset = "2016",
-	geography = "County",
-	state = "Maryland",
-	output = "FIPS Code"
+  id = "A102106",
+  dataset = "2016",
+  geography = "County",
+  state = "Maryland",
+  output = "FIPS Code"
 )
 ```
 
