@@ -1,0 +1,148 @@
+NAME,TABLE,TYPE,DOMAIN,VALUE,LABEL
+MSA_AGG,household,character,"MSACAT %in% c('01','02','03')",1,Metropolitan
+MSA_AGG,household,character,MSACAT %in% '04',2,Not metropolitan
+PRMACT_AGG,person,character,PRMACT %in% '01',1,Working at a job or business
+PRMACT_AGG,person,character,PRMACT %in% '04',2,Keeping house
+PRMACT_AGG,person,character,PRMACT %in% '05',3,Going to school
+PRMACT_AGG,person,character,"PRMACT %in% c('02','03','06','97')",4,Something Else (incl. unemployed)
+WHYTRP90_AGG,trip,character,WHYTRP90 %in% '01',1,Work
+WHYTRP90_AGG,trip,character,"WHYTRP90 %in% c('03','04','06')",2,Shop and Errands
+WHYTRP90_AGG,trip,character,"WHYTRP90 %in% c('07','08','10')",3,Social/Rec
+WHYTRP90_AGG,trip,character,"WHYTRP90 %in% c('02','05','11')",4,Other
+AGE_GROUP,person,character,R_AGE >= 0 & R_AGE <= 17,1,Child
+AGE_GROUP,person,character,R_AGE >= 18 & R_AGE <= 44,2,Young Adult
+AGE_GROUP,person,character,R_AGE >= 45 & R_AGE <= 65,3,Middle Adult
+AGE_GROUP,person,character,R_AGE >= 66,4,Older Adult
+HAS_VEHICLE,household,character,HHVEHCNT > 0,1,Yes
+HAS_VEHICLE,household,character,HHVEHCNT == 0,2,No
+IS_METRO,household,character,"MSACAT %in% c('01','02','03')",1,Metropolitan Area
+IS_METRO,household,character,MSACAT %in% c('04'),2,Not a Metropolitan Area
+TRPMILES_AGG,trip,character,TRPMILES >= 0 & TRPMILES < 1,1,< 1 Mile
+TRPMILES_AGG,trip,character,TRPMILES >= 1 & TRPMILES < 5,2,1 to 4 Miles
+TRPMILES_AGG,trip,character,TRPMILES >= 5 & TRPMILES < 10,3,5 to 10 Miles
+TRPMILES_AGG,trip,character,TRPMILES >= 10 & TRPMILES < 60,4,> 10 Miles
+HHFAMINC_AGG,household,character,"HHFAMINC %in% c('01','02')",1,"Less than $15,000"
+HHFAMINC_AGG,household,character,HHFAMINC %in% c('03'),2,"$15 to $24,999"
+HHFAMINC_AGG,household,character,HHFAMINC %in% c('04'),3,"$25 to $34,999"
+HHFAMINC_AGG,household,character,HHFAMINC %in% c('05'),4,"$35-49,999"
+HHFAMINC_AGG,household,character,HHFAMINC %in% c('06'),5,"$50 to $74,999"
+HHFAMINC_AGG,household,character,HHFAMINC %in% c('07'),6,"$75 to $99,999"
+HHFAMINC_AGG,household,character,"HHFAMINC %in% c('08','09','10','11')",7,"$100,000 and over"
+TRPTRANS_AGG,trip,character,"TRPTRANS %in% c('03','04','05','06','08','09','18')",1,POV
+TRPTRANS_AGG,trip,character,"TRPTRANS %in% c('11','15','16')",2,Transit
+TRPTRANS_AGG,trip,character,TRPTRANS %in% c('01'),3,Walk
+TRPTRANS_AGG,trip,character,"!TRPTRANS %in% c('03','04','05','06','08','09','18','11','12','16','20','01')",4,Other
+R_AGE_AGG,person,character,R_AGE >= 5 & R_AGE <= 15,1,5 to 15
+R_AGE_AGG,person,character,R_AGE >= 16 & R_AGE <= 19,2,16 to 19
+R_AGE_AGG,person,character,R_AGE >= 20 & R_AGE <= 34,3,20 to 34
+R_AGE_AGG,person,character,R_AGE >= 35 & R_AGE <= 54,4,35 to 54
+R_AGE_AGG,person,character,R_AGE >= 55 & R_AGE <= 64,5,55 to 64
+R_AGE_AGG,person,character,R_AGE >= 65,6,65+
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('01'),1,Walked
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('02'),2,Bicycle
+WRKTRANS_CTPP,person,character,"WRKTRANS %in% c('03','04','05','06','18') & CARRODE==1",3,Drove Alone
+WRKTRANS_CTPP,person,character,"WRKTRANS %in% c('03','04','05','06','18') & CARRODE>1",4,Carpool
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('08'),5,Motorcycle
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('11'),6,Bus
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('15'),7,Railroad
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('16'),8,Subway or Streetcar or Lightrail
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('17'),9,Taxicab
+WRKTRANS_CTPP,person,character,WRKTRANS %in% c('20'),10,Ferryboat
+WRKTRANS_CTPP,person,character,WRK_HOME %in% c('01'),11,Worked at home
+WRKTRANS_CTPP,person,character,"WRK_HOME %in% c('02') & !WRKTRANS %in% c('01','02','03','04','05','06','18','08','11','15','16','17','20')",12,Other method
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'00:00','04:59')",1,12:00 a.m. to 4:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:00','05:14')",2,5:00 a.m. to 5:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:15','05:29')",3,5:15 a.m. to 5:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:30','05:44')",4,5:30 a.m. to 5:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:45','05:59')",5,5:45 a.m. to 5:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:00','06:14')",6,6:00 a.m. to 6:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:15','06:29')",7,6:15 a.m. to 6:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:30','06:44')",8,6:30 a.m. to 6:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:45','06:59')",9,6:45 a.m. to 6:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:00','07:14')",10,7:00 a.m. to 7:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:15','07:29')",11,7:15 a.m. to 7:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:30','07:44')",12,7:30 a.m. to 7:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:45','07:59')",13,7:45 a.m. to 7:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:00','08:14')",14,8:00 a.m. to 8:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:15','08:29')",15,8:15 a.m. to 8:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:30','08:44')",16,8:30 a.m. to 8:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:45','08:59')",17,8:45 a.m. to 8:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'09:00','09:14')",18,9:00 a.m. to 9:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'09:15','09:29')",19,9:15 a.m. to 9:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'09:30','09:44')",20,9:30 a.m. to 9:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'09:45','09:59')",21,9:45 a.m. to 9:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'10:00','10:14')",22,10:00 a.m. to 10:14 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'10:15','10:29')",23,10:15 a.m. to 10:29 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'10:30','10:44')",24,10:30 a.m. to 10:44 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'10:45','10:59')",25,10:45 a.m. to 10:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'11:00','11:59')",26,11:00 a.m. to 11:59 a.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'12:00','12:59')",27,12:00 p.m. to 12:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'13:00','13:59')",28,1:00 p.m. to 1:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'14:00','14:59')",29,2:00 p.m. to 2:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'15:00','15:59')",30,3:00 p.m. to 3:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'16:00','16:59')",31,4:00 p.m. to 4:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'17:00','17:59')",32,5:00 p.m. to 5:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'18:00','18:59')",33,6:00 p.m. to 6:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'19:00','19:59')",34,7:00 p.m. to 7:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'20:00','20:59')",35,8:00 p.m. to 8:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'21:00','21:59')",36,9:00 p.m. to 9:59 p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'22:00','22:59')",37,10:00 p.m. to 10:59p.m.
+TOWRKTIME_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'23:00','23:59')",38,11:00 p.m. to 11:59p.m.
+TOWRKTIME_CTPP,person,character,"TIMETOWK %in% c('-9','-8','-7','-1') | WRKTIME %in% c('-9','-8','-7','-1')",39,Missing
+TOWRKTIME_CTPP,person,character,WRK_HOME %in% c('01'),40,Worked at home
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,0,4)",1,Less than 5 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,5,14)",2,5 to 14 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,15,19)",3,15 to19 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,20,29)",4,20 to 29 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,30,44)",5,30 to 44 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,45,59)",6,45 to 59 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,60,74)",7,60 to 74 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,75,89)",8,75 to 89 minutes
+TIMETOWK_CTPP,person,character,"between(TIMETOWK,90,999)",9,90 minutes or more
+TIMETOWK_CTPP,person,character,"TIMETOWK %in% c('-9','-8','-7','-1')",10,Missing
+TIMETOWK_CTPP,person,character,WRK_HOME %in% c('01'),11,Worked at home
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,15,17), HOUSEID]",1,Householder 15 to 17 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,18,24), HOUSEID]",2,Householder 18 to 24 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,25,44), HOUSEID]",3,Householder 25 to 44 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,45,59), HOUSEID]",4,Householder 45 to 59 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,60,64), HOUSEID]",5,Householder 60 to 64 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,65,74), HOUSEID]",6,Householder 65 to 74 years
+HOUSEHOLDER_AGE_CTPP,household,character,"HOUSEID %in% data$data$person[PERSONID=='01' & between(R_AGE_IMP,75,999), HOUSEID]",7,Householder 75 years and over
+HHVEHCNT_CTPP,household,character,HHVEHCNT==0,1,0 vehicles
+HHVEHCNT_CTPP,household,character,HHVEHCNT==1,2,1 vehicle
+HHVEHCNT_CTPP,household,character,HHVEHCNT==2,3,2 vehicles
+HHVEHCNT_CTPP,household,character,HHVEHCNT==3,4,3 vehicles
+HHVEHCNT_CTPP,household,character,HHVEHCNT>=4,5,4-or-more vehicles
+R_AGE_CTPP,person,character,R_AGE >= 16 & R_AGE <= 17,1,16 and 17 years
+R_AGE_CTPP,person,character,R_AGE >= 18 & R_AGE <= 24,2,18 to 24 years
+R_AGE_CTPP,person,character,R_AGE >= 25 & R_AGE <= 44,3,25 to 44 years
+R_AGE_CTPP,person,character,R_AGE >= 45 & R_AGE <= 59,4,45 to 59 years
+R_AGE_CTPP,person,character,R_AGE >= 60 & R_AGE <= 64,5,60 to 64 years
+R_AGE_CTPP,person,character,R_AGE >= 65 & R_AGE <= 74,6,65 to 74 years
+R_AGE_CTPP,person,character,R_AGE >= 75,7,75 years and over
+MINORITY_CTPP,person,character,R_HISP == '02' & R_RACE == '01',1,"White alone, not Hispanic/Latino"
+MINORITY_CTPP,person,character,"R_HISP == '01' | R_RACE %in% c('02','03','04','05','06')",2,Other
+MINORITY_CTPP,person,character,"R_HISP %in% c('-9','-8','-7') | R_RACE %in% c('-9','-8','-7','97')",3,Missing
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:00','05:29')",1,5:00 a.m. to  5:29 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'05:30','05:59')",2,5:30 a.m. to  5:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:00','06:29')",3,6:00 a.m. to  6:29 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'06:30','06:59')",4,6:30 a.m. to  6:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:00','07:29')",5,7:00 a.m. to  7:29 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'07:30','07:59')",6,7:30 a.m. to 7:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:00','08:29')",7,8:00 a.m. to  8:29 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'08:30','08:59')",8,8:30 a.m. to 8:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'09:00','09:59')",9,9:00 a.m. to  9:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'10:00','10:59')",10,10:00 a.m. to 10:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'11:00','11:59')",11,11:00 a.m. to 11:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'12:00','15:59')",12,12:00 p.m. to  3:59 p.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'16:00','11:59')",13,4:00 p.m. to 11:59 p.m.
+TOWRKTIME_14_CTPP,person,character,"between(format(as.POSIXct((as.integer(as.POSIXct(WRKTIME, format = '%I:%M %p'))-(as.integer(TIMETOWK)*60)), origin='1970-01-01'), '%H:%M'),'00:00','04:59')",14,12:00 a.m. to 4:59 a.m.
+TOWRKTIME_14_CTPP,person,character,"TIMETOWK %in% c('-9','-8','-7','-1') | WRKTIME %in% c('-9','-8','-7','-1')",15,Missing
+TOWRKTIME_14_CTPP,person,character,WRK_HOME %in% c('01'),16,Worked at home
+CHILDREN_CTPP,household,character,"HHSIZE==1 | !(HOUSEID %in% data$data$person[between(R_AGE_IMP,0,18) & R_RELAT=='03', HOUSEID])",1,No children
+CHILDREN_CTPP,household,character,"HHSIZE>1 & (HOUSEID %in% data$data$person[between(R_AGE_IMP,0,18) & R_RELAT=='03', HOUSEID])",2,With own children
+CHILDREN_CTPP,household,character,"HOUSEID %in% data$data$person[WORKER %in% c('-9'), HOUSEID] | HOUSEID %in% data$data$person[R_RELAT %in% c('-9','-8','-7'), HOUSEID]",3,Missing
+WRKCOUNT_CTPP,household,character,WRKCOUNT==0,1,0 workers
+WRKCOUNT_CTPP,household,character,WRKCOUNT>0,2,1 or more workers
+URBRUR_CTPP,household,character,URBRUR=='01',1,Living in urban area
+URBRUR_CTPP,household,character,URBRUR=='02',2,Living in rural area

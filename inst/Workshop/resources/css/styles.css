@@ -1,0 +1,66 @@
+pre.sourceCode {
+	border-color: #308866;
+}
+
+li ul li {
+  font-style: normal;
+}
+/*
+table:not(.dataTable) tbody td:nth-of-type(odd),
+table:not(.dataTable) thead th:nth-of-type(odd){
+  background: #eeeeee;
+}
+
+table:not(.dataTable) tbody td:nth-of-type(even),
+table:not(.dataTable) thead th:nth-of-type(even){
+  background: #ffffff;
+}
+*/
+
+table:not(.dataTable) td, table:not(.table) td {
+	vertical-align: top;
+}
+
+table:not(.dataTable), table:not(.table) {
+  border-collapse: collapse;
+  background-color: #ffffff;
+}
+
+table:not(.dataTable) tr, table:not(.table) tr {
+ border-bottom: solid thin;
+ border-color: #999999;
+}
+
+.ggiraph {
+  width: 40% !important;
+}
+
+.transition_slide {
+	background-color: #ffffe6 !important;
+}
+
+body {
+	background-color: #ecf2f9;
+}
+
+div.titlepage {
+	padding-top: 10%;	
+}
+
+h1.title, h1.subtitle {
+	padding-top: 0 !important;	
+}
+
+h1.subtitle {
+	font-size: 1.4em !important;
+}
+
+.girafe {
+	max-width: 1200px;	
+}
+
+/* fixed floating headers aren't meant for multi-page (#) html pages */
+.fixedHeader-floating {
+	display: none !important;
+	opacity: 0 !important;
+}

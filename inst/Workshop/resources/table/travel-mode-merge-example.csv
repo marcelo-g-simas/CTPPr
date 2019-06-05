@@ -1,0 +1,13 @@
+Merged,CTPP,NHTS
+ Walked                            ,Walked                                         , Walk                                            
+ Bicycle                           ,Bicycle                                        , Bicycle                                         
+ Drove Alone                       ,"Car, truck, or van -- Drove alone<br>          ", Car<br>SUV<br>Van<br>Pickup truck<br>Rental car 
+ Carpool                           ,"Car, truck, or van -- In a 2-person carpool<br>Car, truck, or van -- In a 3-person carpool<br>Car, truck, or van -- In a 4-person carpool<br>Car, truck, or van -- In a 5-or-6-person carpool<br>Car, truck, or van -- In a 7-or-more-person carpool          ", Car<br>SUV<br>Van<br>Pickup truck<br>Rental car 
+ Motorcycle                        ,Motorcycle                                     , Motorcycle / Moped                              
+ Bus                               ,Bus or trolley bus                             , Public or commuter bus                          
+ Railroad                          ,Railroad                                       , Amtrak / Commuter rail                          
+ Subway or Streetcar or Lightrail  ,Streetcar or trolley car<br>Subway or elevated , Subway / Elevated / Light rail / Street car     
+ Taxicab                          ,Taxicab                                        , Taxi / Limo (including Uber / Lyft)             
+ Ferryboat                        ,Ferryboat                                      , Boat / Ferry / Water taxi                       
+ Worked at home                   ,Worked at home                                 , *                                               
+ Other method  ,Other method                                   ," RV, Airplane, everything else..                 "
