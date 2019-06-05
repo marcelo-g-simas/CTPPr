@@ -3,7 +3,7 @@
 #' This function allows you to download CTPP tables into R
 #' @param id The identifier of the CTPP table you want to download (e.g. "A101100"). Type \link[CTPPr]{ctpp_tables}() for a list of tables and their ids.
 #' @param geography The geography level of the requested table. Type ctpp_geography_list to see available geographies, or see Details below.
-#' @param state The state your request should subset to. Takes name ("Alabama"), abbreviation ("AL") or FIPS ("01"). Type ctpp_state_list to see available states.
+#' @param state The state your request should subset to. Takes name ("Alabama"), abbreviation ("AL") or FIPS ("01"). Can be comma separated list ("New York, New Jersey"). Type ctpp_state_list to see available states.
 #' @param output How you want your records labelled. Default is "Name" unless geography is "Tract", "TAD", or "TAZ", in which case "FIPS Code" is used to reduce size of request. See Details below for example outputs.
 #' @param dataset "2010" or "2016" to specify which 5-year dataset to query.
 #' @export
@@ -91,6 +91,7 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 	dataset_parameter <- dataset
 	dataset_id <- gsub(" ", "", dataset)
 	dataset_id <- ifelse(nchar(dataset_id)==2,paste0("20",dataset_id),dataset_id)
+	ctpp_dataset_list <- CTPPr::ctpp_dataset_list
 	if (grepl("-",dataset_id)) {
 		year1 <- strsplit(dataset_id,"-")[[1]][1]
 		year2 <- strsplit(dataset_id,"-")[[1]][2]
@@ -156,6 +157,7 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 		geography <- "03" # 03=County see note above
 		geography_attribute_value <- "State"
 	}
+	ctpp_geography_list <- CTPPr::ctpp_geography_list
 	geography <- ifelse(geography %in% c("3","4","5","6","7","8","9"), paste0("0",geography), geography)
 	if(!geography %in% ctpp_geography_list$ID) {
 		if(grepl("->",geography)) {
@@ -191,15 +193,16 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 	}
 
 	# state ----
-	if(state!="") {
-		state <- gsub(" ","",state)
-		# bulk selection allows selecting multiple states using comma separated numeric FIPS
-		if(grepl(",",state)) {
+	# we can allow state parameter to be vector or comma separated string
+	if(state[[1]]!="") {
+		# bulk selection allows selecting multiple states using comma separated numeric FIPS.
+		if(grepl(",",state[[1]])) {
 			state <- strsplit(state,",")[[1]]
 		}
 		state <- sapply(state, FUN=function(x) {
 			# allow state parameter to be name, or alpha FIPS, or numeric FIPS
 			x <- ifelse(x %in% c("1","2","3","4","5","6","7","8","9"), paste0("0",x), x)
+			x <- trimws(x)
 			if(!x %in% ctpp_state_list$FIPS) {
 				if(nchar(x)==2) {
 					x <- ctpp_state_list[toupper(ctpp_state_list$Abbreviation)==toupper(x), "FIPS"]
@@ -246,6 +249,7 @@ download_ctpp <- function(id, geography="State", state="", dataset="", output="N
 		request_body1[names(request_body1)=="ReportCubeId"] <- NULL
 		request_body1[names(request_body1)=="ReportId"] <- NULL
 		request_body1[["BulkLabelSet"]] <- output
+
 	} else if(report_type=="3") {
 		if(geography=="42") { # State->State
 			request_body1[names(request_body1)=="GeoType"] <- "RESIDENCE"

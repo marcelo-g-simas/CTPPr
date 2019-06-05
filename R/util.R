@@ -33,7 +33,7 @@ get_post_body_list <- function(html, debug_request=F) {
 #' @export
 get_post_response <- function(url, host_url, referer_url, request_body, debug_request=F) {
 
-	response <- httr::RETRY(times = 4, pause_cap = 16, quiet = TRUE,
+	response <- httr::RETRY(times = 6, pause_cap = 12, quiet = TRUE,
 		verb = "POST",
 		url = url,
 		config = httr::add_headers(

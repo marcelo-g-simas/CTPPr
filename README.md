@@ -32,7 +32,7 @@ A102106 <- download_ctpp(
   id = "A102106",
   dataset = "2016",
   geography = "County",
-  state = "Maryland",
+  state = "Maryland, Virginia",
   output = "FIPS Code"
 )
 ```
@@ -44,3 +44,6 @@ ctpp_tables()
 ```
 [View this list on Github now](https://raw.githack.com/Westat-Transportation/CTPPr/master/inst/ctpp_tables.html). Click on a table row to copy an example download request to your clipboard.
 
+# Workshop Materials
+
+Looking for a place to start? Go check out our [workshop style presentation](https://raw.githack.com/Westat-Transportation/CTPPr/master/inst/Workshop/Workshop.html) and the [instructions for reproducing it](https://github.com/Westat-Transportation/CTPPr/tree/master/inst/Workshop).

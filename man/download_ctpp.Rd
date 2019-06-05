@@ -12,7 +12,7 @@ download_ctpp(id, geography = "State", state = "", dataset = "",
 
 \item{geography}{The geography level of the requested table. Type ctpp_geography_list to see available geographies, or see Details below.}
 
-\item{state}{The state your request should subset to. Takes name ("Alabama"), abbreviation ("AL") or FIPS ("01"). Type ctpp_state_list to see available states.}
+\item{state}{The state your request should subset to. Takes name ("Alabama"), abbreviation ("AL") or FIPS ("01"). Can be comma separated list ("New York, New Jersey"). Type ctpp_state_list to see available states.}
 
 \item{dataset}{"2010" or "2016" to specify which 5-year dataset to query.}
 
